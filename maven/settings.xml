@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Local Repository Location -->
+    <localRepository>${user.home}/.m2/repository</localRepository>
+
+    <!-- Offline Mode -->
+    <offline>false</offline>
+
+    <!-- Proxy Configuration -->
+    <proxies>
+        <proxy>
+            <id>optional</id>
+            <active>false</active>
+            <protocol>http</protocol>
+            <host>proxy.company.com</host>
+            <port>8080</port>
+            <username>proxyuser</username>
+            <password>proxypass</password>
+            <nonProxyHosts>localhost|127.0.0.1</nonProxyHosts>
+        </proxy>
+    </proxies>
+
+    <!-- Server Authentication -->
+    <servers>
+        <server>
+            <id>server-id</id>
+            <username>deployment-user</username>
+            <password>deployment-pass</password>
+        </server>
+    </servers>
+
+    <!-- Mirror Settings -->
+    <mirrors>
+        <mirror>
+            <id>central-mirror</id>
+            <name>Maven Central Mirror</name>
+            <url>https://repo1.maven.org/maven2</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <!-- Profile Settings -->
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- Active Profiles -->
+    <activeProfiles>
+        <activeProfile>development</activeProfile>
+    </activeProfiles>
+
+</settings>
