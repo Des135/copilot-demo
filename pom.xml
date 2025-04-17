@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>demo-refactoring</module>
+        <module>demo-spark</module>
     </modules>
 
     <properties>
