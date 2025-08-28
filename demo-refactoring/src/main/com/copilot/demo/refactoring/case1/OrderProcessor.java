@@ -125,4 +125,76 @@ public class OrderProcessor {
         // Simulate sending email notification
         System.out.println("Sending email to " + email + ": " + message);
     }
+
+    // Global variable for temporary calculation
+    private double tmp_total = 0.0;
+
+    // Duplicated method with slight variation
+    public boolean processOrder2(String orderId, String customerId, List<OrderItem> items) {
+        // Copy-pasted code with minor changes
+        if (!customers.containsKey(customerId)) {
+            System.out.println("Invalid customer ID");
+            return false;
+        }
+
+        Order order = new Order(orderId, customerId);
+        order.items = items;
+
+        double total = 0.0;
+        for (OrderItem item : items) {
+            total += item.price * item.quantity;
+        }
+
+        total = total * (1 + TAX_RATE);
+        order.totalAmount = total;
+        orders.add(order);
+        return true;
+    }
+
+    // Long method name and poor parameter naming
+    public void calculateAndUpdateOrderTotalAmountAndApplyDiscountAndTax(Order o, double t) {
+        tmp_total = t * (1 + TAX_RATE);
+        o.totalAmount = tmp_total;
+    }
+
+    // Magic numbers and some duplicate logic
+    public void applyDiscount(Order order) {
+        if (order.getTotalAmount() > 1000) {
+            order.totalAmount = order.totalAmount * 0.9;
+        } else if (order.getTotalAmount() > 500) {
+            order.totalAmount = order.totalAmount * 0.95;
+        } else if (order.getTotalAmount() > 100) {
+            order.totalAmount = order.totalAmount * 0.98;
+        }
+    }
+
+    // Method with multiple responsibilities
+    public void doEverything(String orderId, String customerId) {
+        processOrder(orderId, customerId, new ArrayList<>());
+        updateInventory();
+        sendEmails();
+        generateReports();
+        cleanupDatabase();
+    }
+
+    // Empty methods
+    private void updateInventory() {}
+    private void sendEmails() {}
+    private void generatereports() {}
+    private void cleanupDatabase() {}
+
+    // Redundant method
+    private boolean isValidOrder(Order order) {
+        return order != null && order.getOrderId() != null &&
+                order.getCustomerId() != null && order.getItems() != null;
+    }
+
+    // Method doing the same thing as isValidOrder
+    private boolean checkOrder_Validity(Order order) {
+        if (order == null) return false;
+        if (order.getOrderId() == null) return false;
+        if (order.getCustomerId() == null) return false;
+        if (order.getItems() == null) return false;
+        return true;
+    }
 }
